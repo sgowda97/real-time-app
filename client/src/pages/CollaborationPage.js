@@ -41,9 +41,32 @@ const CollaborationPage = () => {
 
     const [value, setValue] = useState(initialValue);
 
+    useEffect(() => {
+        const socket = getSocket();
+
+        socket.on("collaborate", (newValue) => {
+            if (JSON.stringify(newValue) !== JSON.stringify(value)) {
+                console.log("Received new value: ", newValue);
+                setValue(newValue);
+            }
+        });
+
+        return () => {
+            socket.off("collaborate");
+        };
+    }, []);
+
     const handleChange = (newValue) => {
         if (JSON.stringify(newValue) !== JSON.stringify(value)) {
+            const socket = getSocket();
             setValue(newValue);
+
+            if (newValue.length > 0) {
+                socket.emit("collaborate", {
+                    room: "default-room",
+                    content: newValue,
+                });
+            }
         }
     };
 
