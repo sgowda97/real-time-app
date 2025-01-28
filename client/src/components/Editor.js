@@ -25,6 +25,15 @@ const RealTimeEditor = ({ onChange, value }) => {
     const renderLeaf = useCallback(props => <Leaf {...props} />, [])
     const editor = useMemo(() => withHistory(withReact(createEditor())), [])
 
+    useEffect(() => {
+        if (JSON.stringify(editor.children) !== JSON.stringify(value)) {
+            Transforms.deselect(editor);
+            editor.children = value;
+            editor.onChange();
+            Editor.normalize(editor, { force: true });
+        }
+    }, [value, editor]);
+
 
     return (
         <Slate editor={editor} initialValue={value} onChange={(newValue) => onChange(newValue)}>
