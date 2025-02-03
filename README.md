@@ -1,6 +1,6 @@
 # Collaboration App
 
-A collaborative document management system. This application allows users to create, share, and collaborate on documents in real-time.
+A collaborative document management system. This application allows users to create, share, and collaborate on documents in real-time. This is not the complete solution, just a boilerplate.
 
 ## Features
 
