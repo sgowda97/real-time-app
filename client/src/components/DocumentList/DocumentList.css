@@ -1,0 +1,32 @@
+.document-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.document-item {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.document-item h3 {
+    margin: 0;
+}
+
+.document-item p {
+    margin: 5px 0;
+}
+
+.document-item button {
+    padding: 5px 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.document-item button:hover {
+    background-color: #218838;
+}
