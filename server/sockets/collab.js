@@ -8,12 +8,16 @@ async function collaborationHandler(io) {
         });
 
         socket.on('collaborate', (data) => {
-            const { room, content } = data;
-
             try {
+                const { room, content } = data;
+
+                if (!room || !content) {
+                    throw new Error('Invalid data');
+                }
+
                 socket.to(room).emit('collaborate', content);
             } catch (err) {
-                console.log(err);
+                console.error('Socket error:', err);
             }
         });
 
