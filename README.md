@@ -29,7 +29,7 @@ Follow these steps to install and run the project locally:
 
 1. Clone the repository:
    ```bash
-   git clone [your-repository-url]
+   git clone https://github.com/sgowda97/real-time-app.git
    cd collaboration-app
    ```
 2. Update the docker-compose.yaml file as required, refer to .env in ./client and ./server if you need to change anything else.
