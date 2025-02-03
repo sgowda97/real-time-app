@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const cors = require('@fastify/cors');
 const fastifyJWT = require('@fastify/jwt');
+const rateLimit = require('@fastify/rate-limit');
 
 const fastify = require('fastify')({ logger: true });
 const socketio = require('fastify-socket.io');
@@ -28,6 +29,11 @@ fastify.register(cors, {
 
 fastify.register(fastifyJWT, {
     secret: process.env.JWT_SECRET || "someSecret",
+});
+
+fastify.register(rateLimit, {
+    max: 50,
+    timeWindow: '1 minute'
 });
 
 fastify.register(bcrypt, { saltWorkFactor: 12 });

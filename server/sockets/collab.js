@@ -2,9 +2,9 @@ async function collaborationHandler(io) {
     io.on('connection', (socket) => {
         console.log(`User connected: ${socket.id}`);
 
-        socket.on('join-room', (room) => {
-            socket.join(room);
-            console.log(`User ${socket.id} joined room ${room}`);
+        socket.on('join-room', (documentId) => {
+            socket.join(documentId);
+            console.log(`User ${socket.id} joined room ${documentId}`);
         });
 
         socket.on('collaborate', (data) => {
