@@ -34,7 +34,7 @@ const CollaborationPage = () => {
     };
 
     useEffect(() => {
-        const socket = getSocket();
+        const socket = getSocket(documentId);
 
         socket.on("collaborate", (newValue) => {
             if (JSON.stringify(newValue) !== JSON.stringify(value)) {
@@ -50,12 +50,12 @@ const CollaborationPage = () => {
 
     const handleChange = (newValue) => {
         if (JSON.stringify(newValue) !== JSON.stringify(value)) {
-            const socket = getSocket();
+            const socket = getSocket(documentId);
             setValue(newValue);
 
             if (newValue.length > 0) {
                 socket.emit("collaborate", {
-                    room: "default-room",
+                    room: documentId,
                     content: newValue,
                 });
             }

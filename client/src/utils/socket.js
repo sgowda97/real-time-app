@@ -4,14 +4,14 @@ const SOCKET_URL = process.env.REACT_APP_SOCKET_URL;
 
 let socket;
 
-export const getSocket = () => {
+export const getSocket = (documentId) => {
     if (!socket) {
         socket = io(SOCKET_URL, {
             transports: ['websocket'],
             withCredentials: true,
         });
 
-        socket.emit("join-room", "default-room");
+        socket.emit("join-room", documentId);
     }
 
     return socket;
