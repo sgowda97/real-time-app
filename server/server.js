@@ -16,14 +16,15 @@ const collaborationHandler = require('./sockets/collab');
 
 fastify.register(socketio, {
     cors: {
-        origin: process.env.CLIENT_URL || 'http://localhost:3001',
+        origin: '*',
         credentials: true,
     },
     transports: ['websocket'],
 });
 
 fastify.register(cors, {
-    origin: process.env.CLIENT_URL || 'http://localhost:3001',
+    origin: '*',
+    methods: ['POST', 'GET', 'OPTIONS'],
     credentials: true
 });
 
@@ -46,7 +47,7 @@ fastify.ready().then(() => collaborationHandler(fastify.io));
 
 const start = async () => {
     try {
-        fastify.listen({ port: process.env.PORT || 4000 });
+        fastify.listen({ host: process.env.HOST || 'localhost', port: process.env.PORT || 4000 });
     } catch (err) {
         fastify.log.error(err);
         process.exit(1);

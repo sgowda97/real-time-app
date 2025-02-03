@@ -21,8 +21,6 @@ const LoginPage = ({ setIsAuth }) => {
                 password,
             });
 
-            console.log('Login response:', data, status);
-
             if (status === 201 || status === 200) {
                 localStorage.setItem('token', data.token);
                 localStorage.setItem('userId', data.userId);
